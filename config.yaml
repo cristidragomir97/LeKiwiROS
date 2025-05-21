@@ -24,3 +24,13 @@ components:
   ports: []
   packages:
   - micro_ros
+- name: rosboard
+  folder: components/rosboard
+  entrypoint: ''
+  launch_args: ''
+  preinstall: []
+  postinstall: []
+  devices: []
+  ports: []
+  packages:
+  - rosboard
