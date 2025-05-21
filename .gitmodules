@@ -1,0 +1,3 @@
+[submodule "components/microros/ros_ws/src/micro_ros"]
+	path = components/microros/ros_ws/src/micro_ros
+	url = https://github.com/micro-ROS/micro_ros_setup
