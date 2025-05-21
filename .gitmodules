@@ -5,3 +5,7 @@
 	path = components/microros/ros_ws/src/micro_ros_setup
 	url = https://github.com/micro-ROS/micro_ros_setup/
 	branch = humble
+[submodule "components/control/ros_ws/src/omnidirectional_controllers"]
+	path = components/control/ros_ws/src/omnidirectional_controllers
+	url = https://github.com/mateusmenezes95/omnidirectional_controllers
+	branch = humble
