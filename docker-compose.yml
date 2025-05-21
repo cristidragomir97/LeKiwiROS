@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+  rosboard:
+    image: docker.io/dragomirxyz/lekiwi_rosboard:latest
+    restart: unless-stopped
+
+    # bind‐mount the full workspace
+    volumes:
+      - "/home/cdr/robocore-builds/rosboard/ros_ws:/ros_ws:ro"
+
+    environment:
+      - ROS_DOMAIN_ID=0
+      - ROS_DISTRO=humble
+
+
+    # port forwards
+    ports:
+      - "8888:8888"
+
+    # the actual ROS2 launch command
+    command: > 
+      bash -lc "\
+        source /opt/ros/humble/setup.bash && \
+        source /ros_ws/install/setup.bash && \
+        ros2 run rosboard rosboard_node  \
+      "
+  microros:
+    image: docker.io/dragomirxyz/lekiwi_microros:latest
+    restart: unless-stopped
+
+    # bind‐mount the full workspace
+    volumes:
+      - "/home/cdr/robocore-builds/microros/ros_ws:/ros_ws:ro"
+
+    environment:
+      - ROS_DOMAIN_ID=0
+      - ROS_DISTRO=humble
+
+    # device mappings
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
+    # automatically grant required capabilities
+    cap_add:
+      - SYS_ADMIN
+      - NET_ADMIN
+
+
+    # the actual ROS2 launch command
+    command: > 
+      bash -lc "\
+        source /opt/ros/humble/setup.bash && \
+        source /ros_ws/install/setup.bash && \
+        ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/ttyUSB0  \
+      "

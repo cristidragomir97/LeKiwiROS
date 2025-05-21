@@ -16,16 +16,23 @@ hosts:
 components:
 - name: rosboard
   folder: components/rosboard
-  entrypoint: ''
-  launch_args: ''
-  preinstall: []
-  postinstall: []
-  devices: []
-  ports: []
+  entrypoint: ros2 run rosboard rosboard_node
+  ports:
+  - 8888:8888
   packages:
   - rosboard
 - name: microros
   folder: components/microros
+  entrypoint: ros2 run micro_ros_agent micro_ros_agent serial --dev /dev/ttyUSB0
+  postinstall:
+  - ros2 run micro_ros_setup create_agent_ws.sh
+  - ros2 run micro_ros_setup build_agent.sh
+  devices:
+  - /dev/ttyUSB0:/dev/ttyUSB0
+  packages:
+  - micro_ros_setup
+- name: control
+  folder: components/control
   entrypoint: ''
   launch_args: ''
   preinstall: []
@@ -33,4 +40,5 @@ components:
   devices: []
   ports: []
   packages:
-  - micro_ros_setup
+  - omnidirectional_controllers
+  - lekiwi_ros_hw_interface
