@@ -10,6 +10,6 @@
 	url = https://github.com/mateusmenezes95/omnidirectional_controllers
 	branch = humble
 [submodule "components/control/ros_ws/src/LeKiwiROS_Control"]
-	path = components/control/ros_ws/src/omnidirectional_controllers
+	path = components/control/ros_ws/src/LeKiwiROS_Control
 	url = https://github.com/cristidragomir97/LeKiwiROS_Control
 
